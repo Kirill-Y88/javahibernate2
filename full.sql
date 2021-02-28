@@ -31,4 +31,13 @@ INSERT INTO buyers (name, old) VALUES
 ('Maria', 25),
 ('Ekaterina', 33);
 
+DROP TABLE IF EXISTS orders CASCADE;
+CREATE TABLE orders (buyer_id integer, product_id integer, FOREIGN KEY (buyer_id) REFERENCES buyers (id), FOREIGN KEY (product_id) REFERENCES products (id));
+INSERT INTO orders (buyer_id, product_id) VALUES
+(1,6),
+(1,5),
+(2,5),
+(2,1),
+(3,7);
+
 COMMIT;

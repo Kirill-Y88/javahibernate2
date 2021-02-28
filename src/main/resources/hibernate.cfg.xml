@@ -14,5 +14,8 @@
         <property name="hbm2ddl.auto">none</property>
         <property name="current_session_context_class">thread</property>
 
+        <mapping class="ru.geekbrains.javahibernate2.models.Buyer"/>
+        <mapping class="ru.geekbrains.javahibernate2.models.Product"/>
+
     </session-factory>
 </hibernate-configuration>
