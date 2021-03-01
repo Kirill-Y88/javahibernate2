@@ -26,20 +26,20 @@ public class Javahibernate2Application {
         downloadSQLScript();
 
         //опробование crud
-        buyerRepo.init();
+       /* buyerRepo.init();
         buyerRepo.create("15A");
         buyerRepo.create("16S");
         buyerRepo.create("17D");
         buyerRepo.create("18F");
         buyerRepo.create("19G");
-        buyerRepo.shutdown();
+        buyerRepo.shutdown();*/
 
 
         //опробование вывода спиков товаров по id покупателя и наоборот (пока без сервиса, но не в том проблема)
         System.out.println("+++++++++++++++++++++++++++");
         buy_products(1L);
         System.out.println("+++++++++++++++++++++++++++");
-
+        buyer_buy_products(1L);
 
       //  SpringApplication.run(Javahibernate2Application.class, args);
 
@@ -74,8 +74,7 @@ public class Javahibernate2Application {
         try {
             session = factory.getCurrentSession();
             session.beginTransaction();
-            List<Buyer> buyers;
-            buyers = session.getNamedQuery("buy_products")
+            List<Buyer> buyers = session.getNamedQuery("buy_products")
                     .setParameter("id", id)
                     .getResultList();
             session.getTransaction().commit();
@@ -107,10 +106,11 @@ public class Javahibernate2Application {
                     .setParameter("id", id)
                     .getResultList();
             session.getTransaction().commit();
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             for (Product p : products) {
                 p.toString();
             }
-
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         } finally {
             factory.close();
             if (session != null) {
